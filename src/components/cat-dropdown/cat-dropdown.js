@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { filterBreedsAction, getBreedsAction } from '../../shared/actions/cat.action';
-import { SELECT_BREED } from '../../shared/constants/terms.constant';
+import { LOADING, SELECT_BREED } from '../../shared/constants/terms.constant';
 
 const CatDropdown = () => {
     const dispatch = useDispatch()
@@ -12,15 +12,16 @@ const CatDropdown = () => {
         dispatch(getBreedsAction())
     }, [])
 
-    const breedList = useSelector(state => state.cats.breedList)
+    const { breedList, limit, status } = useSelector(state => state.cats)
+
     const selectBreed = (breed) => {
-        dispatch(filterBreedsAction({ id: breed.id }))
+        dispatch(filterBreedsAction({ limit, page: 1, breed }))
     }
 
     return (
         <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                {SELECT_BREED}
+                {status.loading && status.type === 'getBreeds' ? LOADING : SELECT_BREED}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
