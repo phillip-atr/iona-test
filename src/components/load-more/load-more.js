@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { filterBreedsAction } from '../../shared/actions/cat.action'
+import { LOAD_MORE } from '../../shared/constants/terms.constant'
 
 const LoadMore = () => {
     const dispatch = useDispatch()
@@ -11,7 +12,7 @@ const LoadMore = () => {
         dispatch(filterBreedsAction({ limit, page: page + 1, breed: selectedBreed }))
     }
     return showButton ? (
-        <Button variant="info" onClick={getMore}>Load More</Button>
+        <Button variant="info" onClick={getMore}>{LOAD_MORE}</Button>
     ) : ''
 }
 
