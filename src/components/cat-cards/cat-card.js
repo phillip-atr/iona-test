@@ -11,7 +11,7 @@ const CatCard = ({ breed }) => {
     }
 
     return (
-        <Card style={{ width: '16rem' }}>
+        <Card>
             <Card.Img variant="top" style={{ height: '200px', backgroundImage: `url(${breed.url})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
             <Card.Body>
                 <Button variant="primary" className="btn-block" onClick={() => goTo(breed)}>View Details</Button>

@@ -24,35 +24,34 @@ const App = ({ match }) => {
     }, [match])
 
     useEffect(() => {
-        console.log({ filteredBreeds })
         if (filteredBreeds?.length) {
             dispatch(selectBreedAction(first(first(filteredBreeds).breeds)))
-}
+        }
     }, [filteredBreeds])
 
-return (
-    <Fragment>
-        <div className="logo">{SITE_NAME}</div>
-        <Suspense fallback={<Preloader />}>
-            <Row>
-                <Col className="breed-dropdown">
-                    <CatDropdown />
-                </Col>
-                <Col align="right">
-                    <Title />
-                </Col>
-            </Row>
-            <Row className="breed-cards">
-                <CatCards />
-            </Row>
-            <Row>
-                <Col align="center">
-                    <LoadMore />
-                </Col>
-            </Row>
-        </Suspense>
-    </Fragment>
-)
+    return (
+        <Fragment>
+            <div className="logo">{SITE_NAME}</div>
+            <Suspense fallback={<Preloader />}>
+                <Row>
+                    <Col className="breed-dropdown">
+                        <CatDropdown />
+                    </Col>
+                    <Col align="right">
+                        <Title />
+                    </Col>
+                </Row>
+                <Row xs={1} sm={2} md={4} lg={5} className="breed-cards">
+                    <CatCards />
+                </Row>
+                <Row>
+                    <Col align="center">
+                        <LoadMore />
+                    </Col>
+                </Row>
+            </Suspense>
+        </Fragment>
+    )
 }
 
 export default withRouter(App)
