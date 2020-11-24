@@ -7,7 +7,7 @@ const CatCard = ({ breed }) => {
     const history = useHistory()
     
     const goTo = (breed) => {
-        history.push(`/${breed.id}`)
+        history.push(`/breed/detail/${breed.id}`)
     }
 
     return (

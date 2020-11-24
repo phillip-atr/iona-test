@@ -1,5 +1,18 @@
 import { handleActions } from "redux-actions"
-import { filterBreedsAction, filterBreedsFailedAction, filterBreedsSuccessAction, getBreedDetailAction, getBreedDetailFailedAction, getBreedDetailSuccessAction, getBreedsAction, getBreedsFailedAction, getBreedsSuccessAction } from "../actions/cat.action";
+import {
+    filterBreedsAction,
+    filterBreedsFailedAction,
+    filterBreedsSuccessAction,
+    getBreedDetailAction,
+    getBreedDetailFailedAction,
+    getBreedDetailSuccessAction,
+    getBreedsAction,
+    getBreedsFailedAction,
+    getBreedsSuccessAction,
+    selectBreedAction,
+    selectBreedFailedAction,
+    selectBreedSuccessAction
+} from "../actions/cat.action";
 import { uniqBy } from 'lodash'
 
 const defaultState = {
@@ -46,6 +59,18 @@ const reducer = handleActions(
                     message: payload,
                     loading: false,
                     type: "getBreeds",
+                },
+            };
+        },
+        [selectBreedAction]: (state, { payload }) => {
+            return {
+                ...state,
+                selectedBreed: payload,
+                status: {
+                    submitted: true,
+                    success: false,
+                    loading: true,
+                    type: "selectBreed",
                 },
             };
         },
