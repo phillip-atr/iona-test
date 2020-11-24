@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Fragment, lazy, Suspense } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Preloader from '../components/preloader';
 import Title from '../components/title';
@@ -9,7 +9,7 @@ const CatDropdown = lazy(() => import('../components/cat-dropdown'))
 
 const App = () => {
     return (
-        <Container className="page-wrapper">
+        <Fragment>
             <div className="logo">Recat App</div>
             <Suspense fallback={<Preloader />}>
                 <Row>
@@ -29,7 +29,7 @@ const App = () => {
                     </Col>
                 </Row>
             </Suspense>
-        </Container>
+        </Fragment>
     )
 }
 

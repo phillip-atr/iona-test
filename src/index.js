@@ -2,14 +2,26 @@ import './scss/main.scss'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import store from './shared/configs/store.config';
 import App from './pages/app';
+import Switch from 'react-bootstrap/esm/Switch';
+import Details from './pages/details';
+import { Container } from 'react-bootstrap';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Container className="page-wrapper">
+        <Switch>
+          <Route exact path="/">
+            <App />
+          </Route>
+          <Route path="/:id">
+            <Details />
+          </Route>
+        </Switch>
+      </Container>
     </Router>
   </Provider>,
   document.getElementById('root')

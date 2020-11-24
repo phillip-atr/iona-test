@@ -113,7 +113,7 @@ const reducer = handleActions(
         [getBreedDetailSuccessAction]: (state, { payload }) => {
             return {
                 ...state,
-                catList: payload,
+                selectedBreed: payload,
                 status: {
                     submitted: true,
                     success: true,
