@@ -1,5 +1,6 @@
 import { handleActions } from "redux-actions"
 import { filterBreedsAction, filterBreedsFailedAction, filterBreedsSuccessAction, getBreedDetailAction, getBreedDetailFailedAction, getBreedDetailSuccessAction, getBreedsAction, getBreedsFailedAction, getBreedsSuccessAction } from "../actions/cat.action";
+import { uniqBy } from 'lodash'
 
 const defaultState = {
     breedList: [],
@@ -63,15 +64,20 @@ const reducer = handleActions(
         },
         [filterBreedsSuccessAction]: (state, { payload }) => {
             let filteredBreeds = [...state.filteredBreeds]
+            let noMore = false
 
             if (state.page > 1) {
                 filteredBreeds = [...state.filteredBreeds, ...payload]
+                const uniques = uniqBy(filteredBreeds, 'id')
+                filteredBreeds = uniques
+                noMore = uniques.length <= state.filteredBreeds.length
             } else {
                 filteredBreeds = payload
             }
 
             return {
                 ...state,
+                noMore,
                 filteredBreeds,
                 status: {
                     submitted: true,
